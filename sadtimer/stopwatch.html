@@ -1,0 +1,51 @@
+
+<template name="stopwatch">
+  {{#if currentUser}}
+    <div class="stopwatch">
+      <button id="start">Start (Q)</button>
+      <button id="lap">Lap (W)</button>
+      <button id="reset">Reset (E)</button>
+    </div>
+    <div>
+      - {{stopwatchRunning}} -
+    </div>
+    <div class="clock">
+      <span class="hours">
+        00
+      </span>
+      :
+      <span class="minutes">
+        00
+      </span>
+      :
+      <span class="seconds">
+        00
+      </span>
+    </div>
+    <h3>
+      My other stopwatches
+    </h3>
+    <ul>
+      {{#each stopwatches}}
+        {{> stopwatchInstance}}
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>
+      Please log in first.
+    </p>
+  {{/if}}
+</template>
+
+<template name="stopwatchInstance">
+  <li>
+    Created at {{createdAt}}.
+    <ul>
+      {{#each laps}}
+        <li>
+          Stopped at: {{createdAt}}.
+        </li>
+      {{/each}}
+    </ul>
+  </li>
+</template>

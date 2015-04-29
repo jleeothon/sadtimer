@@ -1,0 +1,18 @@
+
+.wrap {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    color: silver;
+}
+
+h2 span.active {
+    color: black;
+}
+
+h2 span:hover {
+    font-style: oblique;
+}

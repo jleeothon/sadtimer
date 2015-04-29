@@ -1,0 +1,18 @@
+
+<template name="countdown">
+  {{#if currentUser}}
+    <form class="countdown">
+        <input type="number" name="hours" min="0" max="999" placeholder="00"> H
+        <input type="number" name="minutes" min="0" max="59" placeholder="00"> M
+        <input type="number" name="seconds" min="0" max="59" placeholder="00"> S
+    </form>
+    <p>
+        hola
+    </p>
+    {{hey}}
+  {{else}}
+    <p>
+      Please log in first.
+    </p>
+  {{/if}}
+</template>
