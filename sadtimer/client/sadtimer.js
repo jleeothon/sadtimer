@@ -1,3 +1,9 @@
+/*
+ * - Makes the titles change modes (about-countdown-stopwatch).
+ * - Configures the user login.
+ * - Controls keyboard events.
+ */
+
 stopwatchKeyEvents = {
   113: function() {document.querySelector("#start").click();}, // q
   119: function() {document.querySelector("#lap").click();}, // w
@@ -8,17 +14,16 @@ countdownKeyEvents = {
   13: function() {document.querySelector("#go").click();} // enter
 };
 
-Meteor.startup(function () {
-  Session.setDefault("templateName", "aboutPanel");
-});
+Session.setDefault("templateName", "aboutPanel");
 
 Template.body.rendered = function() {
-  var templateName = Session.get("templateName");
   var f;
+  var templateName;
   document.querySelector("body").addEventListener("keypress", function(event) {
-    if (templateName == "stopwatchPanel") {
+    templateName = Session.get("templateName");
+    if (templateName === "stopwatchPanel") {
       f = stopwatchKeyEvents[event.which];
-    } else if (templateName == "countdownPanel") {
+    } else if (templateName === "countdownPanel") {
       f = countdownKeyEvents[event.which];
     }
     if (f) {

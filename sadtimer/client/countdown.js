@@ -1,3 +1,4 @@
+
 function parseInputs(template) {
   var hoursInput, minutesInput, secondsInput;
   var hours, minutes, seconds;
@@ -35,7 +36,7 @@ Template.countdownControls.events({
       }
     });
     counter2.fire(-1, totalTime);
-    setTimeout(clearCountdown, time * 1000);
+    setTimeout(clearCountdown, totalTime * 1000);
   }
 });
 

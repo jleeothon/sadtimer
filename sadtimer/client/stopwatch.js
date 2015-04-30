@@ -3,6 +3,33 @@ Session.setDefault("stopwatchIsRunning", false);
 Meteor.subscribe("stopwatches");
 Meteor.subscribe("laps");
 
+StopwatchHandler = {
+  start: function() {
+    var stopwatchId = Session.get("stopwatchId");
+    if (stopwatchId) {
+      StopwatchHandler.reset();
+    }
+    Session.set("stopwatchIsRunning", true);
+    counter2.fire(1);
+    console.log("hey");
+    Meteor.call("startStopwatch", function(error, result) {
+      if (error === undefined) {
+        Session.set("stopwatchId", result);
+      }
+    });
+  },
+  lap: function() {
+    var stopwatchId = Session.get("stopwatchId");
+    if (stopwatchId) {
+      Meteor.call("recordLap", stopwatchId);
+    }
+  },
+  reset: function() {
+    clearStopwatch();
+  }
+};
+
+
 Template.stopwatchPanel.helpers({
   "stopwatchIsRunning": function() {
     return Session.get("stopwatchIsRunning");
