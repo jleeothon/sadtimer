@@ -66,7 +66,6 @@ StopwatchHandler = {
     clearInterval(Session.get("stopwatchMinutesIntervalID"));
     clearInterval(Session.get("stopwatchSecondsIntervalID"));
     template.$(".clock span").text("00");
-    console.log("hey");
   }
 }
 
@@ -76,26 +75,12 @@ if (Meteor.isClient) {
   Meteor.subscribe("stopwatches");
   Meteor.subscribe("laps");
 
-  Template.body.rendered = function() {
-    document.querySelector('body').addEventListener("keypress", function(event) {
-      if (Session.get("templateName") == "stopwatch") {
-        if (event.which == 113 /* q */) {
-          document.querySelector("#start").click();
-        } else if (event.which == 119 /* w */) {
-          document.querySelector("#lap").click();
-        } else if (event.which == 101 /* e */) {
-          document.querySelector("#reset").click();
-        }
-      }
-    });
-  }
-
   Template.stopwatch.helpers({
     "stopwatchRunning": function() {
       return Session.get("stopwatchRunning");
     },
     "stopwatches": function() {
-      return Stopwatches.find();
+      return Stopwatches.find({}, {sort: {createdAt: -1}});
     }
   });
 
@@ -116,7 +101,7 @@ if (Meteor.isClient) {
       return !this.finished;
     },
     laps: function() {
-      return Laps.find({stopwatchId: this._id});
+      return Laps.find({stopwatchId: this._id}, {sort: {createdAt: 1}});
     }
   });
 

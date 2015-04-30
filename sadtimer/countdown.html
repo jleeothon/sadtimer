@@ -1,18 +1,44 @@
 
 <template name="countdown">
   {{#if currentUser}}
-    <form class="countdown">
-        <input type="number" name="hours" min="0" max="999" placeholder="00"> H
-        <input type="number" name="minutes" min="0" max="59" placeholder="00"> M
-        <input type="number" name="seconds" min="0" max="59" placeholder="00"> S
-    </form>
-    <p>
-        hola
-    </p>
-    {{hey}}
+    {{> controls}}
+    {{> clock}}
+    <h3>My other countdowns</h3>
+    <ul>
+      {{#each countdowns}}
+        {{> countdownInstance}}
+      {{/each}}
+    </ul>
   {{else}}
     <p>
       Please log in first.
     </p>
   {{/if}}
+</template>
+
+<template name="controls">
+  <div class="controls">
+      <input type="number" id="hours" name="hours" min="0" max="999" placeholder="00"> hours
+      <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="00"> minutes
+      <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="00"> seconds
+      <button id="go">
+        Go!
+      </button>
+    </div>
+</template>
+
+<template name="clock">
+  <div class="clock">
+    <span class="hours">{{hours}}</span>
+    :
+    <span class="minutes">{{minutes}}</span>
+    :
+    <span class="seconds">{{seconds}}</span>
+  </div>
+</template>
+
+<template name="countdownInstance">
+  <li>
+    Created at {{createdAt}}, {{status}}. <button>Delete</button>
+  </li>
 </template>
