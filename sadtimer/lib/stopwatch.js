@@ -1,6 +1,10 @@
 Stopwatches = new Mongo.Collection("stopwatches");
 Laps = new Mongo.Collection("laps");
 
+clearStopwatch = function() {
+
+};
+
 StopwatchHandler = {
   start: function() {
     var stopwatchSecondsIntervalID;
