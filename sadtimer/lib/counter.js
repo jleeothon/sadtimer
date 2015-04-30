@@ -1,4 +1,5 @@
 counter = function(delta) {
+  console.log("delta " + delta);
   return setInterval(function() {
     var s = Session.get("time");
     s += delta;

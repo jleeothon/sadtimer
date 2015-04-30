@@ -23,11 +23,10 @@ Meteor.methods({
   }
 });
 
-if (Meteor.isServer) {
-  Meteor.publish("stopwatches", function() {
-    return Stopwatches.find({ownerId: this.userId});
-  });
-  Meteor.publish("laps", function() {
-    return Laps.find({ownerId: this.userId});
-  });
-}
+Meteor.publish("stopwatches", function() {
+return Stopwatches.find({ownerId: this.userId});
+});
+
+Meteor.publish("laps", function() {
+return Laps.find({ownerId: this.userId});
+});
