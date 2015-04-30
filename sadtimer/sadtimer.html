@@ -7,15 +7,15 @@
     <h1>Welcome to SAD timer!</h1>
     {{> loginButtons}}
     <h2>
-      <span id="about" class="active">About</span> |
-      <span id="countdown">Countdown</span> |
-      <span id="stopwatch">Stopwatch</span>
+      <span data-templatename="aboutPanel" class="active">About</span> |
+      <span data-templatename="countdownPanel">Countdown</span> |
+      <span data-templatename="stopwatchPanel">Stopwatch</span>
     </h2>
     {{> Template.dynamic template=templateName}}
   </div>
 </body>
 
-<template name="about">
+<template name="aboutPanel">
   <p>
     This is a timer for SAD class. It's actually sort of fun.
   </p>

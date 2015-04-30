@@ -1,12 +1,12 @@
 
-<template name="countdown">
+<template name="countdownPanel">
   {{#if currentUser}}
-    {{> controls}}
+    {{> countdownControls}}
     {{> clock}}
     <h3>My other countdowns</h3>
     <ul>
       {{#each countdowns}}
-        {{> countdownInstance}}
+        {{> countdown}}
       {{/each}}
     </ul>
   {{else}}
@@ -16,18 +16,18 @@
   {{/if}}
 </template>
 
-<template name="controls">
+<template name="countdownControls">
   <div class="controls">
-      <input type="number" id="hours" name="hours" min="0" max="999" placeholder="00"> hours
-      <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="00"> minutes
-      <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="00"> seconds
-      <button id="go">
-        Go!
-      </button>
-    </div>
+    <input type="number" id="hours" name="hours" min="0" max="999" placeholder="00"> hours
+    <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="00"> minutes
+    <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="00"> seconds
+    <button id="go">
+      Go!
+    </button>
+  </div>
 </template>
 
-<template name="countdownInstance">
+<template name="countdown">
   <li>
     Created at {{createdAt}}, {{status}}. <button>Delete</button>
   </li>
