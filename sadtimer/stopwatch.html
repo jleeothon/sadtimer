@@ -1,21 +1,15 @@
 
 <template name="stopwatchPanel">
-  {{#if currentUser}}
-    {{> stopwatchControls}}
-    {{> clock}}
-    <h3>
-      My other stopwatches
-    </h3>
-    <ul>
-      {{#each stopwatches}}
-        {{> stopwatch}}
-      {{/each}}
-    </ul>
-  {{else}}
-    <p>
-      Please log in first.
-    </p>
-  {{/if}}
+  {{> stopwatchControls}}
+  {{> clock}}
+  <h3>
+    My other stopwatches
+  </h3>
+  <ul>
+    {{#each stopwatches}}
+      {{> stopwatch}}
+    {{/each}}
+  </ul>
 </template>
 
 <template name="stopwatchControls">

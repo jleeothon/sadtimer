@@ -11,12 +11,25 @@
       <span data-templatename="countdownPanel">Countdown</span> |
       <span data-templatename="stopwatchPanel">Stopwatch</span>
     </h2>
-    {{> Template.dynamic template=templateName}}
+    {{#if signInRequired}}
+      {{#if currentUser}}
+        {{> Template.dynamic template=templateName}}
+      {{else}}
+        <p>
+          Please sign in first.
+        </p>
+      {{/if}}
+    {{else}}
+      {{> Template.dynamic template=templateName}}
+    {{/if}}
   </div>
 </body>
 
 <template name="aboutPanel">
   <p>
     This is a timer for SAD class. It's actually sort of fun.
+  </p>
+  <p>
+    Source code can be found in <a href="https://github.com/jleeothon/sadtimer">this GitHub repo</a>
   </p>
 </template>

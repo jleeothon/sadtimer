@@ -14,6 +14,12 @@ countdownKeyEvents = {
   13: function() {document.querySelector("#go").click();} // enter
 };
 
+signInRequired = {
+  "aboutPanel": false,
+  "countdownPanel": true,
+  "stopwatchPanel": true
+};
+
 Session.setDefault("templateName", "aboutPanel");
 
 Template.body.rendered = function() {
@@ -41,14 +47,18 @@ Template.body.events({
     Session.set("templateName", templateName);
     template.$("h2 span.active").toggleClass("active");
     template.$("h2 span[data-templatename=" + templateName + "]").addClass("active");
+    Session.set("signInRequired", signInRequired[templateName]);
     clearCountdown();
     clearStopwatch();
   }
 });
 
 Template.body.helpers({
-  templateName: function(){
+  templateName: function() {
     return Session.get("templateName");
+  },
+  signInRequired: function() {
+    return Session.get("signInRequired");
   }
 });
 

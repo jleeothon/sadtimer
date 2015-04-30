@@ -29,14 +29,14 @@ StopwatchHandler = {
   }
 };
 
-
 Template.stopwatchPanel.helpers({
   "stopwatchIsRunning": function() {
     return Session.get("stopwatchIsRunning");
   },
   "stopwatches": function() {
     return Stopwatches.find({}, {sort: {createdAt: -1}});
-  }
+  },
+  "signInRequired": true
 });
 
 Template.stopwatchControls.events({

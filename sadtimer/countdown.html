@@ -1,19 +1,13 @@
 
 <template name="countdownPanel">
-  {{#if currentUser}}
-    {{> countdownControls}}
-    {{> clock}}
-    <h3>My other countdowns</h3>
-    <ul>
-      {{#each countdowns}}
-        {{> countdown}}
-      {{/each}}
-    </ul>
-  {{else}}
-    <p>
-      Please log in first.
-    </p>
-  {{/if}}
+  {{> countdownControls}}
+  {{> clock}}
+  <h3>My other countdowns</h3>
+  <ul>
+    {{#each countdowns}}
+      {{> countdown}}
+    {{/each}}
+  </ul>
 </template>
 
 <template name="countdownControls">
