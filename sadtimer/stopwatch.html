@@ -6,9 +6,6 @@
       <button id="lap">Lap (W)</button>
       <button id="reset">Reset (E)</button>
     </div>
-    <div>
-      - {{stopwatchRunning}} -
-    </div>
     <div class="clock">
       <span class="hours">
         00
@@ -39,7 +36,7 @@
 
 <template name="stopwatchInstance">
   <li>
-    Created at {{createdAt}}.
+    Created at {{createdAt}}. <button>Delete</button>
     <ul>
       {{#each laps}}
         <li>

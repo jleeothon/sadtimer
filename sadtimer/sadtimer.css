@@ -16,3 +16,8 @@ h2 span.active {
 h2 span:hover {
     font-style: oblique;
 }
+
+.clock {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
