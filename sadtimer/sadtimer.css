@@ -14,7 +14,7 @@ h2 span.active {
 }
 
 h2 span:hover {
-    font-style: oblique;
+    text-decoration: underline;
 }
 
 .clock {
