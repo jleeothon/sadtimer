@@ -11,18 +11,34 @@
 </template>
 
 <template name="countdownControls">
-  <div class="controls">
-    <input type="number" id="hours" name="hours" min="0" max="999" placeholder="00"> hours
-    <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="00"> minutes
-    <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="00"> seconds
-    <button id="go">
-      Go!
-    </button>
-  </div>
+  <form class="form-inline controls">
+    <div class="form-group">
+      <label for="hours" class="sr-only">Hours</label>
+      <div class="input-group">
+        <input type="number" id="hours" name="hours" class="form-control" min="0" max="999" placeholder="000" aria-label="hours">
+        <span class="input-group-addon">h</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="minutes" class="sr-only">Minutes</label>
+      <div class="input-group">
+        <input type="number" id="minutes" name="minutes" class="form-control" min="0" max="59" placeholder="00" aria-label="minutes">
+        <span class="input-group-addon">m</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="seconds" class="sr-only">Seconds</label>
+      <div class="input-group">
+        <input type="number" id="seconds" name="seconds" class="form-control" min="0" max="59" placeholder="00" aria-label="seconds">
+        <span class="input-group-addon">s</span>
+      </div>
+    </div>
+    <input type="submit" value="Go!" class="btn btn-default">
+  </form>
 </template>
 
 <template name="countdown">
   <li>
-    Created at {{createdAt}}, {{status}}. <button>Delete</button>
+    Created at {{startDateTime}}, {{status}}. <button>Delete</button>
   </li>
 </template>

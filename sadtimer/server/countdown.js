@@ -6,7 +6,7 @@ Meteor.methods({
     });
   },
   "finishCountdown": function(id) {
-    Countdowns.update(id, {$set: {"finished": true}});
+    Countdowns.update(id, {$set: {"finished": new Date()}});
   },
   "deleteCountdown": function(id) {
     Countdowns.remove(id);

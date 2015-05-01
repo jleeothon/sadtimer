@@ -12,7 +12,7 @@ function parseInputs(template) {
 }
 
 function clearInputs(template) {
-  template.$("input").val(0);
+  template.$("input[type=number]").val(0);
 }
 
 Meteor.subscribe("countdowns");
@@ -24,7 +24,7 @@ Template.countdownPanel.helpers({
 });
 
 Template.countdownControls.events({
-  "click #go": function(event, template) {
+  "submit": function(events, template) {
     var totalTime, val;
     val = parseInputs(template);
     clearInputs(template);
@@ -37,16 +37,21 @@ Template.countdownControls.events({
     });
     counter2.fire(-1, totalTime);
     setTimeout(clearCountdown, totalTime * 1000);
+    return false;
   }
 });
 
 Template.countdown.helpers({
-  "status": function() {
+  status: function() {
     if (this.finished) {
       return "finished";
     } else {
       return "not finished";
     }
+  },
+  startDateTime: function() {
+    var s = new Date(this.createdAt).toLocaleString("en-gb");
+    return s;
   }
 });
 

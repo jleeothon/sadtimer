@@ -45,8 +45,8 @@ Template.body.events({
   "click h2": function(event, template) {
     var templateName = $(event.toElement).data("templatename");
     Session.set("templateName", templateName);
-    template.$("h2 span.active").toggleClass("active");
-    template.$("h2 span[data-templatename=" + templateName + "]").addClass("active");
+    template.$("h2.active").toggleClass("active");
+    template.$("h2[data-templatename=" + templateName + "]").addClass("active");
     Session.set("signInRequired", signInRequired[templateName]);
     clearCountdown();
     clearStopwatch();

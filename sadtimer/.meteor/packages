@@ -8,3 +8,5 @@ meteor-platform
 insecure
 accounts-ui
 accounts-password
+twbs:bootstrap
+less

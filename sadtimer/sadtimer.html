@@ -6,11 +6,11 @@
   <div class="wrap">
     <h1>Welcome to SAD ☹ timer!</h1>
     {{> loginButtons}}
-    <h2>
-      <span data-templatename="aboutPanel" class="active">About</span> |
-      <span data-templatename="countdownPanel">Countdown</span> |
-      <span data-templatename="stopwatchPanel">Stopwatch</span>
-    </h2>
+    <div class="section-names">
+      <h2 data-templatename="aboutPanel" class="active">About</h2> |
+      <h2 data-templatename="countdownPanel">Countdown</h2> |
+      <h2 data-templatename="stopwatchPanel">Stopwatch</h2>
+    </div>
     {{#if signInRequired}}
       {{#if currentUser}}
         {{> Template.dynamic template=templateName}}
