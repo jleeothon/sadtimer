@@ -1,35 +1,52 @@
 <head>
   <title>sadtimer</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
   <div class="wrap">
-    <h1>Welcome to SAD ☹ timer!</h1>
+    <h1><a href="/">The sad timekeeping bureau</a></h1>
     {{> loginButtons}}
     <div class="section-names">
-      <h2 data-templatename="aboutPanel" class="active">About</h2> |
-      <h2 data-templatename="countdownPanel">Countdown</h2> |
-      <h2 data-templatename="stopwatchPanel">Stopwatch</h2>
+      <h2 data-templatename="aboutPanel" class="active">
+        <a>About</a>
+      </h2>
+      |
+      <h2 data-templatename="countdownPanel">
+        <a>Countdown</a>
+      </h2>
+      |
+      <h2 data-templatename="stopwatchPanel">
+        <a>Stopwatch</a>
+      </h2>
     </div>
-    {{#if signInRequired}}
-      {{#if currentUser}}
-        {{> Template.dynamic template=templateName}}
+    <main>
+      {{#if signInRequired}}
+        {{#if currentUser}}
+          {{> Template.dynamic template=templateName}}
+        {{else}}
+          <p>
+            Please sign in first.
+          </p>
+        {{/if}}
       {{else}}
-        <p>
-          Please sign in first.
-        </p>
+        {{> Template.dynamic template=templateName}}
       {{/if}}
-    {{else}}
-      {{> Template.dynamic template=templateName}}
-    {{/if}}
+    </main>
   </div>
 </body>
 
 <template name="aboutPanel">
   <p>
-    This is a timer for SAD class. It's actually sort of fun.
+    This is a timer for Software Architecture and Design class. It's actually sort of fun.
   </p>
   <p>
     Source code can be found in <a href="https://github.com/jleeothon/sadtimer">this GitHub repo</a>
+  </p>
+  <p>
+    Photo by Andrew Price, taken from <a href="https://www.flickr.com/photos/blinkandyoulmissit/2511687208/sizes/l">here</a>.
+  </p>
+  <p>
+    Sound by Go445, taken from <a href="http://soundbible.com/2084-Glass-Ping.html">here</a>.
   </p>
 </template>

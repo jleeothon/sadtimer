@@ -25,7 +25,7 @@ Template.countdownPanel.helpers({
 
 Template.countdownControls.events({
   "submit": function(events, template) {
-    var totalTime, val;
+    var totalTime, val, sfx;
     val = parseInputs(template);
     clearInputs(template);
     totalTime = toSeconds(val["hours"], val["minutes"], val["seconds"]);
@@ -36,27 +36,36 @@ Template.countdownControls.events({
       }
     });
     counter2.fire(-1, totalTime);
-    setTimeout(clearCountdown, totalTime * 1000);
+    setTimeout(function() {
+      var sfx
+      clearCountdown();
+      console.log("hey");
+      sfx = new Audio("/sfx/glass-ping.mp3");
+      sfx.play();
+    }, totalTime * 1000);
+    sfx = new Audio("/sfx/glass-ping.mp3");
+    sfx.play();
     return false;
   }
 });
 
 Template.countdown.helpers({
-  status: function() {
-    if (this.finished) {
-      return "finished";
-    } else {
-      return "not finished";
-    }
+  startDate: function() {
+    return (new Date(this.createdAt).toLocaleDateString("en-gb"));
   },
-  startDateTime: function() {
-    var s = new Date(this.createdAt).toLocaleString("en-gb");
-    return s;
+  startTime: function() {
+    return (new Date(this.createdAt).toLocaleTimeString("en-gb"));
+  },
+  duration: function() {
+    return Math.round((this.finished - this.createdAt) / 1000);
+  },
+  endTime: function() {
+    return (new Date(this.finished).toLocaleTimeString("en-gb"));
   }
 });
 
 Template.countdown.events({
-  "click button": function() {
+  "click .delete": function() {
     Meteor.call("deleteCountdown", this._id);
   }
 });

@@ -5,6 +5,7 @@ Meteor.subscribe("laps");
 
 StopwatchHandler = {
   start: function() {
+    var sfx;
     var stopwatchId = Session.get("stopwatchId");
     if (stopwatchId) {
       StopwatchHandler.reset();
@@ -17,15 +18,23 @@ StopwatchHandler = {
         Session.set("stopwatchId", result);
       }
     });
+    sfx = new Audio("/sfx/glass-ping.mp3");
+    sfx.play();
   },
   lap: function() {
+    var sfx;
     var stopwatchId = Session.get("stopwatchId");
     if (stopwatchId) {
       Meteor.call("recordLap", stopwatchId);
     }
+    sfx = new Audio("/sfx/glass-ping.mp3");
+    sfx.play();
   },
   reset: function() {
+    var sfx;
     clearStopwatch();
+    sfx = new Audio("/sfx/glass-ping.mp3");
+    sfx.play();
   }
 };
 
@@ -52,8 +61,11 @@ Template.stopwatchControls.events({
 });
 
 Template.stopwatch.helpers({
-  unfinished: function() {
-    return !this.finished;
+  startDate: function() {
+    return (new Date(this.createdAt).toLocaleDateString("en-gb"));
+  },
+  startTime: function() {
+    return (new Date(this.createdAt).toLocaleTimeString("en-gb"));
   },
   laps: function() {
     return Laps.find({stopwatchId: this._id}, {sort: {createdAt: 1}});
@@ -63,5 +75,11 @@ Template.stopwatch.helpers({
 Template.stopwatch.events({
   "click button": function(event) {
     Meteor.call("deleteStopwatch", this._id);
+  }
+});
+
+Template.lap.helpers({
+  duration: function() {
+    return Math.round(this.duration / 1000);
   }
 });

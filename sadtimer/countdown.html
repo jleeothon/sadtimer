@@ -3,7 +3,7 @@
   {{> countdownControls}}
   {{> clock}}
   <h3>My other countdowns</h3>
-  <ul>
+  <ul class="countdowns">
     {{#each countdowns}}
       {{> countdown}}
     {{/each}}
@@ -39,6 +39,12 @@
 
 <template name="countdown">
   <li>
-    Created at {{startDateTime}}, {{status}}. <button>Delete</button>
+    Created on <span class="datetime">{{startDate}}</span> at <span class="datetime">{{startTime}}</span>.
+    {{#if finished}}
+      Finished after <span class="datetime">{{duration}}</span> seconds.
+    {{else}}
+      Did not finish.
+    {{/if}}
+    <a class="delete">Delete</a>
   </li>
 </template>

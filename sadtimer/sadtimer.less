@@ -1,15 +1,30 @@
 body {
-    background-color: rgb(3, 3, 6);
-    color: rgb(255, 250, 250);
+
+    background-image: url("/img/bg.jpg");
+    color: rgb(200, 200, 200);
+    font-family: 'Open Sans', sans-serif;
 }
 
+h1 {
+    color: inherit;
+}
+
+h2, h3 {
+    color: rgb(150, 150, 150);
+}
+
+@wrapbg: rgba(20, 15, 15, 0.9);
+
 .wrap {
-    background-color: rgb();
+    background-color: @wrapbg;
+    box-shadow: 0 0 1em 0.5em @wrapbg;
     width: 600px;
     max-width: 85%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 30px;
+    padding: 30px 30px 30px;
+    min-height: 100vh;
+    height: 100%;
 }
 
 #login-buttons {
@@ -27,12 +42,12 @@ body {
     display: inline;
 }
 
-h2.active {
-    color: rgb(255, 250, 250);
+h1 a, h2 a {
+    color: inherit;
 }
 
-h2:hover {
-    text-decoration: underline;
+h2.active {
+    color: rgb(255, 250, 250);
 }
 
 .clock {
@@ -41,3 +56,33 @@ h2:hover {
     margin: 30px auto;
     text-align: center;
 }
+
+.countdowns, .stopwatches {
+    list-style: none;
+    padding-left: 0;
+}
+
+.delete {
+    color: maroon;
+}
+
+.delete:hover {
+    color: red;
+}
+
+.countdowns li, .stopwatches li {
+    margin-bottom: 1em;
+}
+
+span.datetime {
+    color: rgb(200, 200, 240);
+}
+
+.laps {
+    list-style-type: none;
+    display: inline;
+    padding-left: inherit;
+}
+.laps li { display: inline; }
+.laps li:after { content: ", "; }
+.laps li:last-child:after { content: ""; }

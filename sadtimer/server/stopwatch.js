@@ -11,10 +11,15 @@ Meteor.methods({
     });
   },
   recordLap: function(stopwatchId) {
+    var duration;
+    var date;
+    date = new Date();
+    duration = date - Stopwatches.findOne(stopwatchId).createdAt;
     Laps.insert({
       ownerId: Meteor.userId(),
       stopwatchId: stopwatchId,
-      createdAt: new Date()
+      createdAt: date,
+      duration: duration
     });
   },
   deleteStopwatch: function(stopwatchId) {

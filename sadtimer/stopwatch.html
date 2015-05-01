@@ -5,7 +5,7 @@
   <h3>
     My other stopwatches
   </h3>
-  <ul>
+  <ul class="stopwatches">
     {{#each stopwatches}}
       {{> stopwatch}}
     {{/each}}
@@ -14,21 +14,23 @@
 
 <template name="stopwatchControls">
   <div class="stopwatch">
-    <button id="start">Start (Q)</button>
-    <button id="lap">Lap (W)</button>
-    <button id="reset">Reset (E)</button>
+    <button id="start" class="btn btn-default">Start (Q)</button>
+    <button id="lap" class="btn btn-default">Lap (W)</button>
+    <button id="reset" class="btn btn-default">Reset (E)</button>
   </div>
 </template>
 
 <template name="stopwatch">
   <li>
-    Created at {{createdAt}}. <button>Delete</button>
-    <ul>
-      {{#each laps}}
-        <li>
-          Stopped at: {{createdAt}}.
-        </li>
-      {{/each}}
-    </ul>
+    Created on <span class="datetime">{{startDate}}</span> at <span class="datetime">{{startTime}}</span>.
+    {{#if laps.count}}
+      Recorded
+      <ul class="laps">{{#each laps}}{{> lap}}{{/each}}</ul>.
+    {{/if}}
+    <button class="btn btn-link delete">
+      Delete
+    </button>
   </li>
 </template>
+
+<template name="lap"><li><span class="datetime">{{duration}}</span> seconds</li></template>

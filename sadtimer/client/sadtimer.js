@@ -10,17 +10,20 @@ stopwatchKeyEvents = {
   101: function() {document.querySelector("#reset").click();} // e
 };
 
-countdownKeyEvents = {
-  13: function() {document.querySelector("#go").click();} // enter
-};
-
 signInRequired = {
   "aboutPanel": false,
   "countdownPanel": true,
   "stopwatchPanel": true
 };
 
-Session.setDefault("templateName", "aboutPanel");
+function changePanel(templateName) {
+  Session.set("templateName", templateName);
+  $("h2.active").removeClass("active");
+  $("h2[data-templatename=" + templateName + "]").addClass("active");
+  Session.set("signInRequired", signInRequired[templateName]);
+  clearCountdown();
+  clearStopwatch();
+}
 
 Template.body.rendered = function() {
   var f;
@@ -29,8 +32,6 @@ Template.body.rendered = function() {
     templateName = Session.get("templateName");
     if (templateName === "stopwatchPanel") {
       f = stopwatchKeyEvents[event.which];
-    } else if (templateName === "countdownPanel") {
-      f = countdownKeyEvents[event.which];
     }
     if (f) {
       f();
@@ -39,23 +40,18 @@ Template.body.rendered = function() {
 }
 
 Template.body.events({
-  "click h1": function() {
-    Session.set("templateName", "aboutPanel");
+  "click h1 a": function() {
+    changePanel("aboutPanel");
   },
-  "click h2": function(event, template) {
-    var templateName = $(event.toElement).data("templatename");
-    Session.set("templateName", templateName);
-    template.$("h2.active").toggleClass("active");
-    template.$("h2[data-templatename=" + templateName + "]").addClass("active");
-    Session.set("signInRequired", signInRequired[templateName]);
-    clearCountdown();
-    clearStopwatch();
+  "click h2 a": function(event, template) {
+    var templateName = $(event.toElement).parent().data("templatename");
+    changePanel(templateName);
   }
 });
 
 Template.body.helpers({
   templateName: function() {
-    return Session.get("templateName");
+    return Session.get("templateName") || "aboutPanel";
   },
   signInRequired: function() {
     return Session.get("signInRequired");
