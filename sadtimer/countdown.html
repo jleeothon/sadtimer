@@ -3,11 +3,15 @@
   {{> countdownControls}}
   {{> clock}}
   <h3>My other countdowns</h3>
-  <ul class="countdowns">
-    {{#each countdowns}}
-      {{> countdown}}
-    {{/each}}
-  </ul>
+  {{#if countdowns.count}}
+    <ul class="countdowns">
+      {{#each countdowns}}
+        {{> countdown}}
+      {{/each}}
+    </ul>
+  {{else}}
+    You don't have any countdowns. Go make one.
+  {{/if}}
 </template>
 
 <template name="countdownControls">

@@ -5,11 +5,15 @@
   <h3>
     My other stopwatches
   </h3>
-  <ul class="stopwatches">
-    {{#each stopwatches}}
-      {{> stopwatch}}
-    {{/each}}
-  </ul>
+  {{# if stopwatches.count}}
+    <ul class="stopwatches">
+      {{#each stopwatches}}
+        {{> stopwatch}}
+      {{/each}}
+    </ul>
+  {{else}}
+    You don't have any stopwatches. Go make one.
+  {{/if}}
 </template>
 
 <template name="stopwatchControls">
